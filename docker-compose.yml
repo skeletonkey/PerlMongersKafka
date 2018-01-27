@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  zookeeper:
+    build: ./zookeeper
+    ports:
+      - "2181:2181"
+  kafka:
+    build: ./kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    volumes:
+      - "$PMP_BASE_DIR/kafka/config:/kafka/config"
