@@ -7,6 +7,8 @@ RUN wget -q http://www.gtlib.gatech.edu/pub/apache/kafka/1.0.0/kafka_2.11-1.0.0.
 RUN tar -zxf kafka_2.11-1.0.0.tgz
 RUN ln -s /kafka_2.11-1.0.0 /kafka
 
+RUN /kafka/bin/kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic weather
+
 CMD /kafka/bin/kafka-server-start.sh /kafka/config/server.properties
 
 # docker build --rm=false -t kafka_server .
